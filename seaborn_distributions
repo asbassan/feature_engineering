@@ -1,0 +1,97 @@
+# <span style="color:brown">Project - Concrete Strength Prediction</span>
+
+## <span style="color:brown">Table Of Contents</span>
+
+### <span style="color:brown">Import Section</span>
+
+#### <span style="color:indigo">DataTypes Investigation</span>
+
+
+
+##### <span style="color:blue">Observation</span>:
+
+
+
+
+
+
+
+
+
+
+
+
+#Lets get the distribution of values for each of these features
+
+number_of_columns = len(wdf.columns)
+plots_per_rows = 3
+number_of_rows = int(np.ceil(number_of_columns/plots_per_rows))
+columns_list = wdf.columns
+colindex = 0
+fig, axis = plt.subplots(figsize = (20, 15), nrows = number_of_rows, ncols = plots_per_rows)
+
+for r in range(0,number_of_rows):
+    for c in range(0,plots_per_rows):
+        sns.distplot(wdf[columns_list[colindex]], ax = axis[r][c])
+        colindex += 1
+        if colindex >= len(columns_list):
+            break
+        
+      
+      
+      
+columns_list = wdf.columns
+df_duplicate = pd.DataFrame() 
+middle_row = wdf.shape[0] *.5
+
+three_fourth_value = wdf.shape[0] * .75
+
+firstquarter = wdf.shape[0] * .25
+        
+for colname in columns_list:
+    column_length = wdf[colname].count()
+    nunique_values= wdf[colname].nunique()
+    null_values = wdf[colname].isnull().sum()
+    df_duplicate[colname] = [column_length, nunique_values, null_values]
+
+#rename indexes
+df_duplicate = df_duplicate.rename(index = {0:'NumRows', 1:'UniqueValues', 2:'NullValues'})
+
+index_values = ['NumRows', 'UniqueValues', 'NullValues']
+
+number_of_columns = len(wdf.columns)
+plots_per_rows = 3
+number_of_rows = int(np.ceil(number_of_columns/plots_per_rows))
+
+colindex = 0
+fig, axis = plt.subplots(figsize = (20, 15), nrows = number_of_rows, ncols = plots_per_rows)
+
+for r in range(0,number_of_rows):
+    for c in range(0,plots_per_rows):
+        axis[r][c].bar(index_values , df_duplicate[columns_list[colindex]], color = 'darkblue')
+        axis[r][c].axhline(middle_row, color ='green', lw = 2 , label = '50%')
+        axis[r][c].axhline(three_fourth_value, color = 'red', lw = 2, label = '75%')
+        axis[r][c].axhline(firstquarter, color = 'orange', lw = 2, label = '25%')
+        axis[r][c].legend(loc = 'upper right')
+        axis[r][c].set_title(columns_list[colindex])
+        colindex += 1
+        if colindex >= len(columns_list):
+            break
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
