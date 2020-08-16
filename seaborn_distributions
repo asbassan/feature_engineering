@@ -83,11 +83,28 @@ for r in range(0,number_of_rows):
 
 
 
+ https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598
+ 
+ https://github.com/8080labs/ppscore
+ 
+ https://medium.com/swlh/multicollinearity-and-variance-inflation-factor-bc74af36b1c9
+
+pps_df = pps.matrix(wdf).pivot(columns = 'x', index = 'y', values = 'ppscore')
+pps_df  
       
-      
-      
-      
-      
+ x_prep['slag'].value_counts(bins = 5)
+ 
+ # 6 bins makes the distribution better.
+
+x_prep['superplastic_cut'] = pd.cut(x_prep['superplastic'], bins = 6, labels = ['suplastic1', 'suplastic2','suplastic3', 
+    
+ 
+ x_prep['slag_cut'] = x_prep['slag_cut'].astype('category')
+ 
+ x_prep['slag_cat'] = x_prep['slag_cut'].cat.codes
+ 
+ 
+ 
       
       
       
